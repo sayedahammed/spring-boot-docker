@@ -13,3 +13,8 @@
 ```bash
   docker-compose down
 ```
+
+## Scale Up
+```bash
+  docker-compose --file docker-compose-scale.yml up -d --build --scale message-server=3 --scale product-server=2
+```
