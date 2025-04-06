@@ -1,5 +1,14 @@
-version: '2'
+#version: '3.8'
 services:
+  postgres:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_DB: mydb
+      POSTGRES_USER: mydbusr
+      POSTGRES_PASSWORD: P@ssWord123
+    volumes:
+      - pgdata:/var/lib/postgres/data
   message-server:
     container_name: message-server
     build:
@@ -23,3 +32,6 @@ services:
 networks:
   spring-cloud-network:
       driver: bridge
+volumes:
+  pgdata:
+    driver: local
