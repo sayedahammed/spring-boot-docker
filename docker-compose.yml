@@ -7,6 +7,8 @@ services:
       POSTGRES_DB: mydb
       POSTGRES_USER: mydbusr
       POSTGRES_PASSWORD: P@ssWord123
+    ports:
+      - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgres/data
   message-server:
