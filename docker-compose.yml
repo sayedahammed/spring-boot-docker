@@ -14,9 +14,10 @@ services:
   message-server:
     container_name: message-server
     build:
-      context: message-server
+      context: ./message-server
       dockerfile: Dockerfile
     image: message-server:latest
+    restart: unless-stopped
     ports:
       - "18888:8080"
     networks:
@@ -24,9 +25,10 @@ services:
   product-server:
     container_name: product-server
     build:
-      context: product-server
+      context: ./product-server
       dockerfile: Dockerfile
     image: product-server:latest
+    restart: unless-stopped
     ports:
       - "19999:8080"
     networks:
