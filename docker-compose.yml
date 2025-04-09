@@ -1,4 +1,5 @@
-#version: '3.8'
+version: '3.8'
+
 services:
   postgres:
     image: postgres:latest
@@ -10,7 +11,10 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - pgdata:/var/lib/postgres/data
+      - pgdata:/var/lib/postgresql/data # ✅ fix mount path
+    networks:
+      - spring-cloud-network
+
   message-server:
     container_name: message-server
     build:
@@ -20,8 +24,11 @@ services:
     restart: unless-stopped
     ports:
       - "18888:8080"
+    depends_on:
+      - postgres
     networks:
       - spring-cloud-network
+
   product-server:
     container_name: product-server
     build:
@@ -31,11 +38,15 @@ services:
     restart: unless-stopped
     ports:
       - "19999:8080"
+    depends_on:
+      - postgres
     networks:
       - spring-cloud-network
-networks:
-  spring-cloud-network:
-      driver: bridge
+
 volumes:
   pgdata:
     driver: local
+
+networks:
+  spring-cloud-network:
+    driver: bridge
