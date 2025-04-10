@@ -15,6 +15,14 @@ services:
     networks:
       - spring-cloud-network
 
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379"
+    networks:
+      - spring-cloud-network
+
   message-server:
     container_name: message-server
     build:

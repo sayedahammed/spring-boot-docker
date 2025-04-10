@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class DockerProductController {
-    @GetMapping("/products")
+    @GetMapping("/hello")
     public String getMessage() {
-        return "A brand new product";
+        return "Hello from Docker";
     }
 }
