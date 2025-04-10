@@ -48,6 +48,7 @@ services:
       - "19999:8080"
     depends_on:
       - redis
+      - postgres
     networks:
       - spring-cloud-network
 
